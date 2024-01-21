@@ -1,0 +1,44 @@
+<span>
+  <h1 mat-dialog-title>{{ parentData.heading }}</h1>
+  <div mat-dialog-content>
+    <app-form-component
+      [formControls]="parentData.controls"
+      [name]="parentData.name"
+    ></app-form-component>
+  </div>
+
+  <mat-error *ngIf="showErrorMessage" class="font_reg font_85rem">{{
+    errorMessage
+  }}</mat-error>
+
+  <div mat-dialog-actions [align]="'end'">
+    <button mat-raised-button color="warn" mat-dialog-close>
+      {{ appMessages.application.close }}
+    </button>
+    <button
+      mat-raised-button
+      color="primary"
+      [disabled]="disableBtn || showErrorMessage"
+      (click)="
+        clickAction.emit({
+          type:
+            parentData.actionBtn === appMessages.application.save
+              ? 'signUp'
+              : 'login',
+          eventValue:
+            parentData.actionBtn === appMessages.application.save
+              ? {
+                  disableBtnValue: disableBtn,
+                  controlValue: sharedService.signUpForm,
+                  actionBtnChanged: appMessages.application.goToLoginRedirection
+                }
+              : {
+                  controlValue: sharedService.signInForm
+                }
+        })
+      "
+    >
+      {{ parentData.actionBtn }}
+    </button>
+  </div>
+</span>

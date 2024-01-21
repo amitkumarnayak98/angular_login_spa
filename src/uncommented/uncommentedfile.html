@@ -1,0 +1,178 @@
+<div *ngIf="i === 0" class="rowInfo-downArrow" id="rowExpandInfo">
+  <div class="plus-icon" id="expandRowIcon">
+    <div
+      class="plusIcon"
+      id="expandRowContents{{ row?.id || row?._id }}"
+      (click)="rowAction.emit({row,type:'expand'})"
+      [class.expanded-row]="extendableRowData === row"
+    >
+      <mat-icon id="expandRowContent"
+        >{{ row?.isExpand ? 'remove_circle_outline' : 'control_point' }}
+      </mat-icon>
+    </div>
+  </div>
+</div>
+<div *ngSwitchCase="'dropDown'" (click)="$event.stopPropagation()">
+  <mat-form-field appearance="fill">
+    <mat-select
+      [(value)]="row.selectedRole"
+      (selectionChange)="rowAction.emit({row,event:$event , type:'dropDownChanged'})"
+      [ngClass]="{ border: row?.isEdit }"
+      [disabled]="row?.blockUser || disableAction"
+      id="rolesDropdown"
+    >
+      <mat-option
+        (click)="rowAction.emit({row,id:ct?.id, name:ct?.name , type:'dropDownChangeConfirm'})"
+        *ngFor="
+                      let ct of row?.blockUserRoles
+                        ? personaArray
+                        : dropDownArrayInfo;
+                      let idx = index
+                    "
+        [value]="ct?.id"
+        id="selectRoles{{ idx }}"
+        class="font_10rem font_reg"
+      >
+        {{ ct?.name }}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+</div>
+<div *ngSwitchCase="'checkBox'" class="check-box">
+  <mat-checkbox
+    [checked]="row?.isSelected"
+    (click)="rowAction.emit({row,type:'checkBox'})"
+    id="selectRow"
+    [disabled]="row?.blockUser || disableAction"
+  ></mat-checkbox>
+</div>
+<div
+  *ngSwitchCase="'isLink'"
+  class="anchorText font_10rem"
+  [ngClass]="
+                row?.isLoading ? 'loading-disabled' : 'loading-enabled'
+              "
+>
+  <a
+    class="pointer"
+    [class]="
+                  row?.status === 'PENDING' || disableAction
+                    ? 'edit-btn btn-disabled'
+                    : 'edit-btn hover_line'
+                "
+    id="link{{ row?.id || row?._id }}"
+    (click)="rowAction.emit({row,type:'navigate'})"
+    >{{ row[column?.key] }}</a
+  >
+
+  <ng-content column.type></ng-content>
+</div>
+<div *ngSwitchCase="'delete'" id="deleteRow" class="non-edit-last-column">
+  <div class="delete_icon-container">
+    <span id="custPointer">
+      <button
+        class="pointer"
+        [disabled]="
+                      row?.blockUser || disableAction || !row?.allowDelete
+                    "
+        [ngClass]="
+                      !row?.blockUser || !disableAction || row?.allowDelete
+                        ? 'font_voilet action-btn'
+                        : 'diasble-action-btn'
+                    "
+        (click)="rowAction.emit({row,type:'delete'})"
+      >
+        <!-- !row?.roles?.includes('Synopsys AE') ||
+                    !row?.roles?.includes('Synopsys CAD Engineer') -->
+        <!-- ||
+                      !row?.allowDelete -->
+        <mat-icon id="iconDelete">delete_outline</mat-icon>
+      </button>
+    </span>
+  </div>
+</div>
+<div *ngSwitchCase="'edit'" id="editRow{{ i }}" class="non-edit-last-column">
+  <!-- Disable Actions Need to Confirms From Saideep -->
+  <button
+    id="rowSelected{{ i }}"
+    [class]="
+                  row?.status === disableAction || (row.status === 'PENDING' && row.deployment)
+                    ? 'edit-btn btn-disabled'
+                    : 'edit-btn'
+                "
+    [disabled]="row?.status === disableAction"
+  >
+    <span class="pointer" id="custPointer">
+      <mat-icon class="font_voilet" (click)="rowAction.emit({row,type:'edit'})"
+        >edit</mat-icon
+      >
+    </span>
+  </button>
+</div>
+<div *ngSwitchCase="'menu'">
+  <div *ngFor="let option of row?.menuOptions">
+    <mat-menu #menu="matMenu">
+      <button mat-menu-item id="menu{{ i }}">
+        <span (click)="rowAction.emit({row,type:'menu',name:option.key})"
+          >{{ option.name }}</span
+        >
+      </button>
+    </mat-menu>
+  </div>
+</div>
+
+<div *ngSwitchCase="'radioBtn'">
+  <mat-button-toggle-group
+    *ngIf="column?.title === 'Status'"
+    name="userStatus"
+    [value]="row?.status"
+    (change)="rowAction.emit({row,event:$event,type:'radioChanged'})"
+    [ngClass]="{}"
+    id="toggleBtn"
+    [disabled]="
+                  row?.blockUser || disableAction || row?.blockUserRoles
+                "
+  >
+    <mat-button-toggle
+      id="activeBtn{{ i }}"
+      value="Active"
+      (change)="rowAction.emit({row,status:'ACTIVE',type:'radioChangeConfirm'})"
+    >
+      {{ appMessages.application.tggleActive }}
+    </mat-button-toggle>
+
+    <mat-button-toggle
+      value="Deactivated"
+      id="deactivatedBtn{{ i }}"
+      (change)="rowAction.emit({row,status:'INACTIVE',type:'radioChangeConfirm'})"
+      >{{ appMessages.application.tggleInActive }}</mat-button-toggle
+    >
+  </mat-button-toggle-group>
+
+  <mat-button-toggle-group
+    *ngIf="column?.title === 'Access Token Status'"
+    name="userAccessTokenStatus"
+    [value]="row?.accessToken"
+    (change)="rowAction.emit({row,event:$event,type:'accessTokenRadioChanged'})"
+    [ngClass]="{}"
+    id="toggleAccessBtn"
+    [disabled]="
+                  row?.blockUser || disableAction || row?.blockUserRoles
+                "
+  >
+    <mat-button-toggle
+      id="activeAccessBtn{{ i }}"
+      value="Active"
+      (change)="rowAction.emit({row,accessToken:'ACTIVE',type:'accessTokenChangeConfirm'})"
+    >
+      {{ appMessages.application.tggleActive }}
+    </mat-button-toggle>
+
+    <mat-button-toggle
+      value="Deactivated"
+      id="deactivatedAccessBtn{{ i }}"
+      (change)="rowAction.emit({row,accessToken:'INACTIVE',type:'accessTokenChangeConfirm'})"
+      >{{ appMessages.application.tggleInActive }}</mat-button-toggle
+    >
+  </mat-button-toggle-group>
+</div>

@@ -1,0 +1,292 @@
+<div class="employee_form">
+  <form [formGroup]="signUpForm">
+    <p class="font_reg">{{ appMessages.dataGrid.name }}</p>
+    <div class="flex-row first-name">
+      <mat-form-field appearance="outline">
+        <mat-label>{{ appMessages.employeeForm.firstName }}</mat-label>
+        <input
+          formControlName="firstName"
+          type="text"
+          matInput
+          placeholder="{{ appMessages.employeeForm.firstName }}"
+        />
+        <mat-error
+          *ngIf="
+            signUpForm.controls['firstName'].errors &&
+            signUpForm.controls['firstName'].errors['required']
+          "
+        >
+          {{ appMessages.application.required }}</mat-error
+        >
+        <mat-error
+          *ngIf="
+            signUpForm.controls['firstName'].errors &&
+            signUpForm.controls['firstName'].errors['pattern']
+          "
+        >
+          {{ appMessages.signUpForm.nameError }}</mat-error
+        >
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label>{{ appMessages.employeeForm.middleName }}</mat-label>
+        <input
+          formControlName="middleName"
+          type="text"
+          matInput
+          placeholder="{{ appMessages.employeeForm.middleName }}"
+        />
+        <mat-error
+          *ngIf="
+            signUpForm.controls['middleName'].errors &&
+            signUpForm.controls['middleName'].errors['required']
+          "
+        >
+          {{ appMessages.application.required }}</mat-error
+        >
+        <mat-error
+          *ngIf="
+            signUpForm.controls['middleName'].errors &&
+            signUpForm.controls['middleName'].errors['pattern']
+          "
+        >
+          {{ appMessages.signUpForm.nameError }}
+        </mat-error>
+      </mat-form-field>
+      <mat-form-field appearance="outline">
+        <mat-label>{{ appMessages.employeeForm.lastName }}</mat-label>
+        <input
+          formControlName="lastName"
+          type="text"
+          matInput
+          placeholder="{{ appMessages.employeeForm.lastName }}"
+        />
+        <mat-error
+          *ngIf="
+            signUpForm.controls['lastName'].errors &&
+            signUpForm.controls['lastName'].errors['required']
+          "
+        >
+          {{ appMessages.application.required }}</mat-error
+        >
+        <mat-error
+          *ngIf="
+            signUpForm.controls['lastName'].errors &&
+            signUpForm.controls['lastName'].errors['pattern']
+          "
+        >
+          {{ appMessages.signUpForm.nameError }}
+        </mat-error>
+      </mat-form-field>
+    </div>
+    <div class="flex-row email-block">
+      <mat-form-field appearance="outline">
+        <mat-label>{{ appMessages.employeeForm.mobileNumber }}</mat-label>
+        <input
+          formControlName="mobileNumber"
+          type="number"
+          matInput
+          placeholder="{{ appMessages.employeeForm.mobileNumber }}"
+        />
+        <mat-error
+          *ngIf="
+            signUpForm.controls['mobileNumber'].errors &&
+            signUpForm.controls['mobileNumber'].errors['required']
+          "
+        >
+          {{ appMessages.application.required }}
+        </mat-error>
+        <mat-error
+          *ngIf="
+            signUpForm.controls['mobileNumber'].errors &&
+            signUpForm.controls['mobileNumber'].errors['pattern']
+          "
+        >
+          {{ appMessages.employeeForm.numberError }}
+        </mat-error>
+      </mat-form-field>
+      <mat-form-field appearance="outline">
+        <mat-label>{{ appMessages.dataGrid.email }}</mat-label>
+        <input
+          formControlName="email"
+          type="email"
+          matInput
+          placeholder="{{ appMessages.dataGrid.email }}"
+        />
+        <mat-error
+          *ngIf="
+            signUpForm.controls['email'].errors &&
+            signUpForm.controls['email'].errors['required']
+          "
+        >
+          {{ appMessages.application.required }}
+        </mat-error>
+        <mat-error
+          *ngIf="
+            signUpForm.controls['email'].errors &&
+            signUpForm.controls['email'].errors['pattern']
+          "
+        >
+          {{ appMessages.signUpForm.emailError }}
+        </mat-error>
+      </mat-form-field>
+    </div>
+    <p class="font_reg label-field">{{ appMessages.employeeForm.address }}</p>
+    <div class="flex-row email-block">
+      <mat-form-field appearance="outline">
+        <mat-label>{{ appMessages.employeeForm.address }}</mat-label>
+        <input
+          formControlName="address"
+          type="text"
+          matInput
+          placeholder="{{ appMessages.employeeForm.streetAddress }}"
+        />
+        <mat-error *ngIf="signUpForm.controls['address'].errors">
+          {{ appMessages.application.required }}
+        </mat-error>
+      </mat-form-field>
+      <mat-form-field appearance="outline">
+        <mat-label>{{ appMessages.employeeForm.city }}</mat-label>
+        <input
+          formControlName="city"
+          type="text"
+          matInput
+          placeholder="{{ appMessages.employeeForm.city }}"
+        />
+        <mat-error
+          *ngIf="
+            signUpForm.controls['city'].errors &&
+            signUpForm.controls['city'].errors['required']
+          "
+        >
+          {{ appMessages.application.required }}
+        </mat-error>
+        <mat-error
+          *ngIf="
+            signUpForm.controls['city'].errors &&
+            signUpForm.controls['city'].errors['pattern']
+          "
+        >
+          {{
+            appMessages.signUpForm.nameError.replace(
+              "name",
+              appMessages.employeeForm.city
+            )
+          }}
+        </mat-error>
+      </mat-form-field>
+    </div>
+    <div class="flex-row email-block">
+      <mat-form-field appearance="outline">
+        <mat-label>{{ appMessages.employeeForm.state }}</mat-label>
+        <input
+          formControlName="state"
+          type="text"
+          matInput
+          placeholder="{{ appMessages.employeeForm.state }}"
+        />
+        <mat-error
+          *ngIf="
+            signUpForm.controls['state'].errors &&
+            signUpForm.controls['state'].errors['required']
+          "
+        >
+          {{ appMessages.application.required }}
+        </mat-error>
+        <mat-error
+          *ngIf="
+            signUpForm.controls['state'].errors &&
+            signUpForm.controls['state'].errors['pattern']
+          "
+        >
+          {{
+            appMessages.signUpForm.nameError.replace(
+              "name",
+              appMessages.employeeForm.state.toLowerCase()
+            )
+          }}
+        </mat-error>
+      </mat-form-field>
+      <mat-form-field appearance="outline">
+        <mat-label>{{ appMessages.employeeForm.country }}</mat-label>
+        <input
+          formControlName="country"
+          type="text"
+          matInput
+          placeholder="{{ appMessages.employeeForm.country }}"
+        />
+        <mat-error
+          *ngIf="
+            signUpForm.controls['country'].errors &&
+            signUpForm.controls['country'].errors['required']
+          "
+        >
+          {{ appMessages.application.required }}
+        </mat-error>
+        <mat-error
+          *ngIf="
+            signUpForm.controls['country'].errors &&
+            signUpForm.controls['country'].errors['pattern']
+          "
+        >
+          {{
+            appMessages.signUpForm.nameError.replace(
+              "name",
+              appMessages.employeeForm.country.toLowerCase()
+            )
+          }}
+        </mat-error>
+      </mat-form-field>
+    </div>
+    <div class="flex-row email-block">
+      <mat-form-field appearance="outline">
+        <mat-label>{{ appMessages.employeeForm.postalZipCode }}</mat-label>
+        <input
+          formControlName="postalZipCode"
+          type="number"
+          matInput
+          placeholder="{{ appMessages.employeeForm.postalZipCode }}"
+        />
+        <mat-error
+          *ngIf="
+            signUpForm.controls['postalZipCode'].errors &&
+            signUpForm.controls['postalZipCode'].errors['required']
+          "
+        >
+          {{ appMessages.application.required }}
+        </mat-error>
+      </mat-form-field>
+    </div>
+    <div class="flex-row email-block">
+      <mat-form-field appearance="outline">
+        <mat-label>{{ appMessages.employeeForm.birthData }}</mat-label>
+        <input formControlName="birthData" matInput [matDatepicker]="picker" />
+        <mat-hint>MM/DD/YYYY</mat-hint>
+        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
+      </mat-form-field>
+    </div>
+    <mat-form-field appearance="outline">
+      <mat-label>{{
+        appMessages.employeeForm.additionalInformation
+      }}</mat-label>
+      <input
+        formControlName="additionalInformation"
+        type="text"
+        matInput
+        placeholder="{{ appMessages.employeeForm.additionalInformation }}"
+      />
+      <mat-error *ngIf="signUpForm.controls['additionalInformation'].errors">
+        {{ appMessages.signUpForm.passwordError }}
+      </mat-error>
+    </mat-form-field>
+  </form>
+  <div class="btn-block flex-end">
+    <button mat-raised-button color="warn" (click)="resetForm()">
+      {{ appMessages.application.reset }}
+    </button>
+    <button mat-raised-button color="primary" (click)="getEmployeeFormData()">
+      {{ appMessages.application.save }}
+    </button>
+  </div>
+</div>

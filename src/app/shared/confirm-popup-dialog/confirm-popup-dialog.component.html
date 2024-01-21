@@ -1,0 +1,33 @@
+<div class="employee_details-popup font_reg">
+  <p class="font_reg">{{ appMessages.employeeForm.employeePopupHeading }}</p>
+  <div class="flex-column">
+    <div class="disp-flex name-block">
+      <p class="font_bold">{{ appMessages.dataGrid.name }}:</p>
+      <p class="font_reg">
+        {{ data?.employeeDetails?.firstName | uppercase }}&nbsp;{{
+          data?.employeeDetails?.middleName | uppercase
+        }}&nbsp;{{ data?.employeeDetails?.lastName | uppercase }}
+      </p>
+    </div>
+    <div class="disp-flex email-block">
+      <p class="font_bold">{{ appMessages.dataGrid.email }}:</p>
+      <p class="font_reg">{{ data?.employeeDetails?.email }}</p>
+    </div>
+    <div *ngIf="employeeHeadingsArray?.length">
+      <div *ngFor="let option of employeeHeadingsArray">
+        <div class="disp-flex">
+          <p class="font_bold">{{ appMessages.employeeForm[option] }}:</p>
+          <p class="font_reg">{{ data?.employeeDetails[option] }}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div mat-dialog-actions [align]="'end'">
+    <button mat-raised-button color="warn" mat-dialog-close>
+      {{ appMessages.application.close }}
+    </button>
+    <button mat-raised-button color="primary" (click)="saveEmployeeDetails()">
+      {{ appMessages.application.save }}
+    </button>
+  </div>
+</div>

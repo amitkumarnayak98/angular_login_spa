@@ -1,0 +1,26 @@
+:host ::ng-deep {
+  .employee_details-popup {
+    p.font_reg {
+      margin-bottom: 15px;
+    }
+    div.flex-column {
+      gap: 15px;
+
+      .email-block,
+      .name-block {
+        height: 23px;
+      }
+
+      div.disp-flex {
+        gap: 8px;
+        p.font_bold {
+          flex: 1;
+          min-width: 171px;
+        }
+        p.font_reg {
+          flex: 1;
+        }
+      }
+    }
+  }
+}

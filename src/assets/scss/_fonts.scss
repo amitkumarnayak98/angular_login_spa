@@ -1,0 +1,25 @@
+@font-face {
+  font-family: "Open-Sans-Regular";
+  src: url("../fonts/OpenSans/OpenSans-Regular.ttf");
+  // font-weight: 700;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Open-Sans-Semi-Bold";
+  src: url("../fonts/OpenSans_SemiCondensed/OpenSans_SemiCondensed-Bold.ttf");
+  font-weight: 500;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Open-Sans-Bold";
+  src: url("../fonts/OpenSans/OpenSans-Bold.ttf");
+  font-weight: 700;
+  font-style: normal;
+}
+
+// 40px  -> 1.2rem 	19.2px 		- Headings
+// 32px  -> 1.1rem 	17.6px		- General Subheading
+// 26px(20px,24px)    -> 1.0rem		16px 		- General Titles
+// 18px  -> 0.9rem     	14px		- General font size - below 600 (0.75rem)

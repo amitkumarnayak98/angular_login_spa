@@ -1,0 +1,18 @@
+<div *ngIf="userInfo?.length">
+  <!-- @Common data table component -->
+  <app-data-grid
+    [data]="tableData"
+    [columnSchema]="columnsData"
+    [columnWidth]="sharedService.getTdWidth(columnsData.length)"
+    [totalRecord]="tableData.length"
+  ></app-data-grid>
+  <!-- @Common data table component -->
+  <button
+    mat-raised-button
+    color="primary"
+    class="open-btn"
+    (click)="getEmployeeForm()"
+  >
+    {{ appMessages.application.proceedEmployeeForm }}
+  </button>
+</div>

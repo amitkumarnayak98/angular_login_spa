@@ -1,0 +1,57 @@
+{
+  "application": {
+    "save": "Save",
+    "cancel": "Cancel",
+    "reset": "Reset",
+    "close": "Close",
+    "filter": "Filter",
+    "signUp": "Sign Up",
+    "login": "Login",
+    "required": "* Required",
+    "filterLabel": "Select page of users",
+    "goToLoginRedirection": "Go To Login Page",
+    "applicationHeading": "Assignment One",
+    "proceedEmployeeForm": "Proceed to fill Employee Form"
+  },
+  "dataGrid": {
+    "email": "Email",
+    "username": "Username",
+    "name": "Name",
+    "password": "Password"
+  },
+  "signUpForm": {
+    "heading": "Sign Up Form",
+    "userNamePattern": "^[a-zA-Z0-9]+([._]?[a-zA-Z0-9]+)*$",
+    "namePattern": "[a-zA-Z][a-zA-Z ]+",
+    "passwordPattern": "/^(?=.*[a-z])(?=.*[A-Z])(?=.*d)(?=.*[@$!%*?&])[A-Za-zd@$!%*?&]{8,}$/",
+    "emailError": "Enter a vaild eamil",
+    "userNameError": "Enter a valid username",
+    "nameError": "Enter a valid name",
+    "passwordError": " Password must be minimum eight characters, at least one letter and one number"
+  },
+  "signInForm": {
+    "signInErrorMessage": "Username and Password are not matching",
+    "signIn": "Sign In",
+    "heading": "Login Form",
+    "emailError": "Enter a vaild eamil",
+    "passwordError": " Password must be minimum eight characters, at least one letter and one number"
+  },
+  "employeeForm": {
+    "firstName": "First Name",
+    "middleName": "Middle Name",
+    "gender": "Gender",
+    "lastName": "Last Name",
+    "mobileNumber": "Mobile Number",
+    "address": "Address",
+    "streetAddress": "Street Address",
+    "city": "City",
+    "state": "State",
+    "country": "Country",
+    "postalZipCode": "Postal / Zip Code",
+    "birthData": "Birth Data",
+    "additionalInformation": "Additional Information",
+    "numberPattern": "^(0|[1-9][0-9]*)$",
+    "numberError": "Enter a valid number",
+    "employeePopupHeading": "Are you sure you want to save"
+  }
+}

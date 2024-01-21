@@ -1,0 +1,85 @@
+<div class="table-wrapper justify-center">
+  <div class="table-wrapper-body font_10rem">
+    <!-- <div class="table-wrapper-header">
+      {{ tableTitle }}
+    </div> -->
+    <table
+      class="mat-table"
+      mat-table
+      [dataSource]="tableDataSource"
+      matSort
+      multiTemplateDataRows
+    >
+      <!-- Table Data source is the source of data for the table and below ng-container for th and td we loop columnSchema value, -->
+      <ng-container
+        [matColumnDef]="column.key"
+        *ngFor="let column of columnSchema; index as i"
+      >
+        <!-- In th.header we are rendering columnSchema titles for each column to be represented in the header -->
+        <th
+          *matHeaderCellDef
+          mat-sort-header
+          mat-header-cell
+          [width]="columnWidth"
+        >
+          {{ column.title }}
+        </th>
+
+        <!-- In td we are rendering value for the particular column-header according to the columnSchema.type switch case by binding the columnSchema.key -->
+        <td
+          *matCellDef="let row"
+          class="cellStyle"
+          mat-cell
+          [width]="columnWidth"
+        >
+          <div [ngSwitch]="column.type" class="align-center">
+            <!-- For Bold as column values -->
+            <span *ngSwitchCase="'textBold'" class="font_bold">
+              {{
+                row[column?.key]
+                  ? row[column?.key]
+                  : row[column?.key] === 0
+                  ? 0
+                  : "--"
+              }}
+            </span>
+
+            <!-- For Regular text as column values -->
+            <span *ngSwitchDefault>
+              {{
+                row[column?.key]
+                  ? row[column?.key]
+                  : row[column?.key] === 0 || row[column?.key] === "0"
+                  ? 0
+                  : "--"
+              }}
+            </span>
+          </div>
+        </td>
+      </ng-container>
+      <!---->
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr
+        mat-row
+        *matRowDef="let row; columns: displayedColumns"
+        id="tableRow{{ row?.id }}"
+        (mouseover)="rowAction.emit({row,type:'mouseOver'})"
+      ></tr>
+    </table>
+    <div *ngIf="!data?.length" class="nodata-found">No Data Found</div>
+    <div class="paginator-wrapper">
+      <mat-paginator
+        id="matTablePaginator"
+        aria-label="Select page"
+        #paginatorPageSize
+        [pageIndex]="paginationInfo.pageIndex"
+        [pageSizeOptions]="[10, 25, 100]"
+        showFirstLastButtons
+        disableOptionCentering
+        (page)="handlePagination($event)"
+        [length]="totalRecord"
+      ></mat-paginator>
+    </div>
+  </div>
+</div>
