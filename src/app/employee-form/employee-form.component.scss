@@ -1,0 +1,28 @@
+.employee_form {
+  padding: 30px 50px 0 50px;
+
+  .label-field {
+    padding: 20px 0 0 0;
+  }
+
+  .first-name {
+    gap: 2%;
+    padding: 10px 0px 0px 0px;
+  }
+
+  .email-block {
+    gap: 2%;
+    padding: 10px 0px 0px 0px;
+  }
+
+  .btn-block {
+    gap: 15px;
+    padding-top: 15px;
+  }
+}
+
+:host ::ng-deep {
+  mat-form-field {
+    width: 30%;
+  }
+}

@@ -1,0 +1,35 @@
+<mat-toolbar color="primary">
+  <button
+    mat-icon-button
+    class="example-icon"
+    aria-label="Example icon-button with menu icon"
+  >
+    <mat-icon>menu</mat-icon>
+  </button>
+  <span>{{ appMessages.application.applicationHeading }}</span>
+  <span class="example-spacer"></span>
+  <div *ngIf="!getHeaderProfile()">
+    <div class="disp-flex btn-block">
+      <button mat-raised-button color="warn" (click)="openDialog()">
+        {{ appMessages.application.signUp }}
+      </button>
+      <button mat-raised-button color="warn" (click)="openLoginDialog()">
+        {{ appMessages.application.login }}
+      </button>
+    </div>
+  </div>
+  <mat-icon
+    *ngIf="getHeaderProfile()"
+    class="header-nav-icon"
+    [matMenuTriggerFor]="profileMenu"
+  >
+    account_circle
+  </mat-icon>
+  <mat-menu #profileMenu="matMenu">
+    <div *ngFor="let option of profileOptions">
+      <button mat-menu-item (click)="getHeaderNav(option?.name)">
+        {{ option?.name }}
+      </button>
+    </div>
+  </mat-menu>
+</mat-toolbar>

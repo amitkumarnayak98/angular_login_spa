@@ -1,0 +1,21 @@
+<form [formGroup]="formGroup" *ngIf="formControls && formControls?.length">
+  <div *ngFor="let each of formControls">
+    <p *ngIf="each.isPtagNeeded" class="font_reg label-field">
+      {{ each.pLabel }}
+    </p>
+    <div [style]="each.styleValue ? each.styleValue : ''">
+      <mat-form-field>
+        <mat-label>{{ appMessages?.dataGrid[each?.placeholder] }}</mat-label>
+        <input
+          formControlName="{{ each?.formControlName }}"
+          type="{{ each?.type }}"
+          matInput
+          placeholder="{{ appMessages?.dataGrid[each?.placeholder] }}"
+        />
+        <mat-error *ngIf="formGroup?.controls[each?.formControlName]?.errors">
+          {{ appMessages[name][each?.error] }}
+        </mat-error>
+      </mat-form-field>
+    </div>
+  </div>
+</form>

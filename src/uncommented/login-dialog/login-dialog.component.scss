@@ -1,0 +1,16 @@
+@import "../../../styles.scss";
+@import "../../../assets/scss/variables";
+
+mat-form-field {
+  width: 100%;
+}
+
+.error-message {
+  color: #ff5722;
+  font-family: $SansReg;
+  font-size: 13px;
+}
+
+.mat-dialog-title {
+  margin-bottom: 10px;
+}

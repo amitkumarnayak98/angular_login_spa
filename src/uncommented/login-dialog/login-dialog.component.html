@@ -1,0 +1,38 @@
+<h1 mat-dialog-title>{{ appMessages.signInForm.heading }}</h1>
+<div mat-dialog-content class="login_dialog-block">
+  <form [formGroup]="loginForm">
+    <mat-form-field>
+      <mat-label>{{ appMessages.dataGrid.email }}</mat-label>
+      <input
+        formControlName="email"
+        type="email"
+        matInput
+        placeholder="{{ appMessages.dataGrid.email }}"
+      />
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>{{ appMessages.dataGrid.password }}</mat-label>
+      <input
+        formControlName="password"
+        type="password"
+        matInput
+        placeholder="{{ appMessages.dataGrid.password }}"
+      />
+    </mat-form-field>
+  </form>
+</div>
+<div *ngIf="showErrorMessage" class="error-message">{{ errorMessage }}</div>
+
+<div mat-dialog-actions [align]="'end'">
+  <button mat-raised-button color="warn" mat-dialog-close>
+    {{ appMessages.application.close }}
+  </button>
+  <button
+    mat-raised-button
+    color="primary"
+    [disabled]="!loginForm.valid"
+    (click)="handleSubmitLogin()"
+  >
+    {{ actionBtn }}
+  </button>
+</div>
